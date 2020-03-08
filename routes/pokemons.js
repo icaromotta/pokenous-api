@@ -17,4 +17,15 @@ router.post('/create', function (req, res, next) {
   })
 });
 
+/* GET pokemon */
+router.get('/:id', function (req, res, next) {  
+  Pokemon.findById(req.params.id, (err, pokemon) => {
+    if(err) {
+      console.log(err);
+      return res.status(200).send({ok: false})
+    }
+    return res.status(200).send(pokemon)
+  })
+})
+
 module.exports = router;
